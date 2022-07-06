@@ -1,0 +1,555 @@
+ % Sayfa biçimi ve metin puntosu
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english, turkish]{babel}
+
+\usepackage{listings}
+
+\usepackage{lineno}
+
+% /////////////////////////////
+
+\usepackage{marginnote} % Required for margin notes
+\usepackage{wallpaper} % Required to set each page to have a background
+\usepackage{lastpage} % Required to print the total number of pages
+% \usepackage[left=1.3cm,right=4.6cm,top=1.8cm,bottom=4.0cm,marginparwidth=3.4cm]{geometry} % Adjust page margins
+\usepackage{amsmath} % Required for equation customization
+\usepackage{amssymb} % Required to include mathematical symbols
+\usepackage{xcolor} % Required to specify colors by name
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr} % Required to customize headers
+
+
+%----------------------------------------------------------------------------------------
+%	HEADER INFORMATION
+%-------------------------------------------------------------------------------------
+
+\fancyhead[L]{\begin{tabular}{l r | l r} % The header is a table with 4 columns
+\textbf{Ağ Programlama} & Lab. Uygulamları & \textbf{Sayfa} & \thepage/\pageref{LastPage} \\ % Project name and page count
+\textbf{Tarih}  & \today \\ % Job number and last updated date
+\textbf{Dönemi} & 2022-2023 Bahar & \textbf{Tarih} &\today \\ % Version and reviewed date
+\textbf{Ders Sor.} & Prof.Dr.Resul Daş & \textbf{Lab.Sor} & Arş.Gör. Oğuzhan Katar\\ % Designer and reviewer
+\end{tabular}}
+
+%-------------------------------------------------------------------------------------
+% \begin{document}
+
+
+% /////////////////////////////
+
+% \usepackage{fancyhdr} % Required to customize headers
+
+
+% \setcounter{secnumdepth}{4} % how many sectioning levels to assign numbers to
+% \setcounter{tocdepth}{4}    % how many sectioning levels to show in ToC
+
+\usepackage[absolute,overlay]{textpos}
+\usepackage[document]{ragged2e}	%Sağa sola ve heriki yana yasla 
+\usepackage{xcolor}	%renk paketi
+\usepackage[top=3.0cm, bottom=2.5cm, left=3.25cm, right=2.5cm]{geometry} % Kenar boşlukları
+\usepackage{textgreek} % Yunanca karakter 
+\usepackage{titlesec} % Anabölüm ve alt bölüm başlıkları font ve boşluk değişimi
+% \usepackage[final,dvips]{graphicx}
+% \usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+
+% \usepackage{graphicx} 
+% \usepackage{epstopdf}
+
+% \usepackage{ifpdf}
+% \ifpdf
+%   \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+% \else
+%   \DeclareGraphicsExtensions{.eps}
+% \fi
+% \usepackage{epstopdf}
+% \DeclareGraphicsRule{.png}{.eps}{.bb}{.pdf}  %{pdf}{-crop.pdf}{`pdfcrop #1}
+% /\DeclareGraphicsRule{.png}{eps}{.bb}{}
+\usepackage[export]{adjustbox}
+
+
+
+\usepackage{amsmath,amsfonts,amsthm,bm} % Denklem paketi 
+\usepackage{lmodern}   
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{indentfirst}
+%\usepackage{csquotes}
+\usepackage{textcmds}
+\usepackage[unicode]{hyperref} %	Hiper link paketi
+\hypersetup{hidelinks}
+\usepackage{url}
+
+\usepackage{tocloft} %	Tablo,Şekil, İçindekiler Sayfası ayarları
+\usepackage[hypcap=false]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+%\usepackage{mhchem}
+\usepackage{booktabs} %	Tablo alt çizgi kalınlığı ayarı
+\usepackage{tikz} %	Tik sembolü ekleme
+\usetikzlibrary{mindmap,trees,shapes.geometric,arrows,automata,petri,positioning}
+\usepackage{minted}
+
+\usepackage{enumitem}
+\usepackage{appendix}
+%\usepackage{biblatex}
+\usepackage{secdot}
+\usepackage{verbatim}
+% \newtheorem{definition}{Tanım}[section]
+% \newtheorem{problem}{Problem}[section]
+% \newtheorem{example}{Örnek}[section]
+% \newtheorem{algorithm}{Algoritma}[section]
+\usepackage{xpatch}
+\makeatletter
+\AtBeginDocument{\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}}
+\makeatother
+\usepackage[section]{placeins}
+
+\usepackage{multicol}
+
+\DeclareTextCompositeCommand{\.}{T1}{i}{\accent"0A \i} %i sorunu için
+%----------------------------------------------------------------------------------------------------
+%	Alttaki blok kalın büyük-küçük (bold small caps) fontu 
+%	oluşturmayı amaçlar 
+\RequirePackage{fix-cm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\rmfamily
+\DeclareFontShape{T1}{lmr}{b}{sc}{<->ssub*cmr/bx/sc}{}
+\DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{}
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------------------
+%	Alttaki blok matematik denklemlerinin 1cm girdi biçimde sola hizlanmasını amaçlar 
+\makeatletter
+\newcommand{\mathleft}{\@fleqntrue\@mathmargin1cm}
+\newcommand{\mathcenter}{\@fleqnfalse}
+\makeatother
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\urlstyle{rm} %	url referans fontu değişimi (şaun kullanılan font roman )
+
+\usepackage{longtable} %	Uzun tabloların bir sonraki sayfadan devam etmesini sağlar
+
+%----------------------------------------------------------------------------------------------------
+%	Alttaki blok metni belirli boyutlara sahip bir kutu içerisine sıkıştırmayı amaçlar 
+\usepackage{environ}
+\usepackage{relsize}
+\makeatletter
+\NewEnviron{fitbox}[2]{%
+	\minipage{#1}%
+	\sbox0{\minipage{#1}\strut\BODY\strut\endminipage}%
+	\Gscale@div\factor{#2}{\dimexpr\ht0+\dp0\relax}%
+	\relscale{\factor}%
+	\BODY
+	\endminipage
+}
+\makeatother
+%---------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+% 	Sayfaya sığmayan kelimelerin "-" ile bölünmesini engelleyen kod bloğu
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+%----------------------------------------------------------------------------------------------------
+% ///////////////////////////////////////////////////////////////////////
+% ENVIROMENT WILL BE USEFUL IN THE FUTURE
+% ///////////////////////////////////////////////////////////////////////
+% \newenvironment{sheet}
+%     {\begin{center}
+%     \begin{tabular}{|p{0.9\textwidth}|}
+%     \geometry{
+%         left=1.3cm,
+%         right=4.6cm,
+%         top=1.8cm,
+%         bottom=4.0cm,
+%         marginparwidth=3.4cm
+%     }
+    
+
+% \setlength{\headheight}{80pt} % Increase the size of the header to accommodate meta-information
+% \pagestyle{fancy}\fancyhf{} % Use the custom header specified below
+% \renewcommand{\headrulewidth}{0pt} % Remove the default horizontal rule under the header
+
+% \setlength{\parindent}{0cm} % Remove paragraph indentation
+% \newcommand{\tab}{\hspace*{2em}} % Defines a new command for some horizontal space
+
+% \newcommand\BackgroundStructure{ % Command to specify the background of each page
+% \setlength{\unitlength}{1mm} % Set the unit length to millimeters
+
+% \setlength\fboxsep{0mm} % Adjusts the distance between the frameboxes and the borderlines
+% \setlength\fboxrule{0.5mm} % Increase the thickness of the border line
+% \put(10, 10){\fcolorbox{black}{blue!10}{\framebox(155,247){}}} % Main content box
+% \put(165, 10){\fcolorbox{black}{blue!10}{\framebox(37,247){}}} % Margin box
+% \put(10, 262){\fcolorbox{black}{white!10}{\framebox(192, 25){}}} % Header box
+% \put(175, 263){\includegraphics[height=23mm,keepaspectratio]{00-images/00-logo.png}} % Logo box - maximum height/width: 
+% }
+
+%     \hline\\
+%     }
+%     { 
+%     \\\\\hline
+%     \end{tabular} 
+%     \end{center}
+% }
+% \newenvironment{answer}{}{}
+% ///////////////////////////////////////////////////////////////////////
+% ENVIROMENT WILL BE USEFUL IN THE FUTURE
+% ///////////////////////////////////////////////////////////////////////
+% ///////////////////////////////////////////////////////////////////////
+% CUSTOM LISTING STYLE FOR CODE SAMPLES
+% ///////////////////////////////////////////////////////////////////////
+% \definecolor{codegreen}{rgb}{0,0.6,0}
+% \definecolor{codegreen}{rgb}{0.373, 0.596, 0.082}
+\definecolor{keyword_green}{rgb}{0.027, 0.506, 0.004}
+
+% #5f9815 green
+% 8edffb blue
+\definecolor{line_gray}{rgb}{0.5,0.5,0.5}
+\definecolor{string_red}{rgb}{1, 0, 0}
+\definecolor{comment_blue}{rgb}{0.318, 0.6, 0.745}
+% #b42171 red
+% \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{code}{
+    frame=lines,
+    % backgroundcolor=\color{backcolour},   
+    commentstyle=\color{comment_blue}\slshape,
+    keywordstyle=\color{keyword_green}\bfseries,
+    stringstyle=\color{string_red},
+    numberstyle=\tiny\color{line_gray},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=code}
+% ///////////////////////////////////////////////////////////////////////
+% CUSTOM LISTING STYLE FOR CODE SAMPLES
+% ///////////////////////////////////////////////////////////////////////
+% ///////////////////////////////////////////////////////////////////////
+% CUSTOM LISTING STYLE FOR CODE SAMPLES
+% ///////////////////////////////////////////////////////////////////////
+\usepackage{enumerate}		    % Enumerate Environments
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{tikz, tabularx}
+
+\mdfdefinestyle{exerciseStyle}{%
+	frametitlerule=true,
+	roundcorner=5pt,
+	linecolor=black,
+	outerlinewidth=0.5pt,
+	middlelinewidth=0.5pt
+}
+\mdtheorem[style=exerciseStyle]{question}{\textbf{Soru}}
+
+
+
+% ///////////////////////////////////////////////////////////////////////
+% ///////////////////////////////////////////////////////////////////////
+
+% \mdfdefinestyle{sheetStyle}{%
+%     left=1.3cm,
+%     right=4.6cm,
+%     top=1.8cm,
+%     bottom=4.0cm,
+%     marginparwidth=3.4cm
+% }
+% \mdtheorem[style=sheetStyle]{sheet}{\textbf{Sheeeeeeeeeeet}}
+% ///////////////////////////////////////////////////////////////////////
+% ///////////////////////////////////////////////////////////////////////
+
+% ///////////////////////////////////////////////////////////////////////
+% CUSTOM LISTING STYLE FOR CODE SAMPLES
+% ///////////////////////////////////////////////////////////////////////
+%----------------------------------------------------------------------------------------------------
+%	Sayfa numarası boşluğu
+\usepackage{calc}
+\setlength{\footskip}{\paperheight
+	-(1in+\voffset+\topmargin+\headheight+\headsep+\textheight)
+	-1.5cm}
+%---------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%	Sayfa numarası font değişimi
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{%
+	\fancyhf{} 
+	\fancyfoot[C]{\fontsize{10pt}{10pt}\selectfont\thepage} 
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{plain}
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\usetikzlibrary{graphs,graphs.standard}
+
+\newcount\nodecount
+\tikzgraphsset{
+  declare={subgraph N}%
+  {
+    [/utils/exec={\global\nodecount=0}]
+    \foreach \nodetext in \tikzgraphV
+    {  [/utils/exec={\global\advance\nodecount by1}, 
+      parse/.expand once={\the\nodecount/\nodetext}] }
+  },
+  declare={subgraph C}%
+  {
+    [cycle, /utils/exec={\global\nodecount=0}]
+    \foreach \nodetext in \tikzgraphV
+    {  [/utils/exec={\global\advance\nodecount by1}, 
+      parse/.expand once={\the\nodecount/\nodetext}] }
+  }
+}
+\usepackage{tabularx}
+\usepackage{blkarray}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+
+\usepackage[printonlyused]{acronym} % Kısaltmalar
+
+\begin{document}
+%----------------------------------------------------------------------------------------------------
+%	Büyük küçük yazı sitilinde "i" karakteri sorununun çözümü için
+%	gerekli kod bloğu. Metin içerisinde büyük-küçük yazı sitilinde
+%	"i" karekteri kullanmak için "\.\i" yazmanız gerekmektedir.
+% \expandafter\let\csname\string\T1\string\.-\string\i\endcsname\relax
+\shorthandoff{=}
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+% 	Latex dökümanınızı oluşturmadan önce ilk olarak "tezbilgileri.tex" dosyasına girerek
+%						kendi metninize ait bilgileri giriniz! 
+%	
+%	"tezbilgileri.tex"  doyasındaki bilgilerin doğru bir biçimde girilmesi; pencere altı kapak, 
+%	iç kapak, onay metni ve beyan metninin otomatik olarak doldurulmasını sağlayacaktır.
+%	Herhangi bir problem yaşamadığınız takdirde "pencerealtikapak.tex", "ickapak.tex", "onay.tex"
+%	"beyan.tex" dosyalarında herhangi bir değişiklik yapmayınız.
+
+\input{./tezbilgileri.tex}
+\input{./onsayfalar/pencerealtikapak.tex}
+\input{./onsayfalar/ickapak.tex}
+\input{./onsayfalar/onay.tex}
+\input{./onsayfalar/beyan.tex}
+%----------------------------------------------------------------------------------------------------
+
+\def\MyContents{\.{I}\c{c}\.{i}ndek\.{i}ler}
+\def\MyShapeLists{Şek\.{i}ller L\.{i}stes\.{i}}
+\def\MyTableList{Tablolar L\.{i}stes\.{i}}
+\def\MyCodeList{Kodlar L\.{i}stes\.{i}}
+
+%---------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%			 İçindekiler sayfası ayarları
+%	(Gerek duyulmadıkça ayarlarda değişiklik yapmayınız!)
+%----------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------
+
+\renewcommand{\contentsname}{\hfill {\Large \bfseries\textsc{\MyContents{}}} \hfill} 
+\renewcommand{\cfttoctitlefont}{\footnotesize}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+
+\renewcommand{\cftaftertoctitle} { \vspace{-1.25cm}} 
+\renewcommand{\cftbeforetoctitleskip}{-1cm}
+\addtocontents{toc}{~\hfill\footnotesize\textbf{Sayfa}\vspace{-0.3cm}} 
+\addtocontents{toc}{~\hfill\rule{\textwidth}{0.3pt}\par}	%	Sayfa numarası üstüne çizgi ekleme
+\renewcommand{\cftchapfont}{\scshape\bfseries\small}%	Ana bölüm başlığı fontu değişimi
+\renewcommand{\cftsecfont}{\footnotesize}	%	2. derece alt başlık fontu değişimi
+\renewcommand{\cftsubsecfont}{\footnotesize}	%	3. derece alt başlık fontu değişimi
+%\renewcommand\thechapter{\arabic{chapter}.}
+%\renewcommand\thesection{\thechapter\arabic{section}.}
+%\renewcommand\thesubsection{\thesection\arabic{subsection}.}
+%\hspace{2mm}
+\setlength{\cftbeforechapskip}{2pt} %	TOC daki 	ana bölüm /chapters'lardan sonra gellen boşluk ayarı
+\setlength{\cftchapnumwidth}{0.7cm} %	TOC daki 	ana bölüm  numarası ile chapter başlığı arasındaki genişlik ayarı
+\setlength{\cftsecnumwidth}{0.80cm}	%	TOC daki 2. derece alt başlık numarası ile ana bölüm başlığı arasındaki genişlik ayarı
+\setlength{\cftsubsecnumwidth}{0.95cm}
+\setlength{\cftsubsecindent}{1.45cm}
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%			Şekiller listesi sayfa ayarları
+%	(Gerek duyulmadıkça ayarlarda değişiklik yapmayınız!)
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+\renewcommand\listfigurename{\hfill {\Large \bfseries \textsc{\MyShapeLists{}}} \hfill}
+\renewcommand{\cftloftitlefont}{\footnotesize}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\cftafterloftitle}{\vspace{-1cm}} 
+\renewcommand{\cftbeforeloftitleskip}{-1cm}
+\addtocontents{lof}{~\hfill\footnotesize\textbf{Sayfa}\vspace{-0.4cm}} 
+\addtocontents{lof}{~\hfill\rule{\textwidth}{0.3pt}\par\vspace{-0.35cm}}  % Sayfa numarası üstüne çizgi ekleme
+\renewcommand{\cftfigfont}{\footnotesize} % Şekil listesi yazı sitili değişimi
+\renewcommand\thefigure{\thechapter\arabic{figure}.} 
+\renewcommand{\cftfigpresnum}{\bfseries Şekil\:}
+\setlength{\cftfignumwidth}{2cm}   
+\setlength{\cftfigindent}{0cm}  
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%				Tablo listesi sayfa ayarları
+%	(Gerek duyulmadıkça ayarlarda değişiklik yapmayınız!)
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\renewcommand\listtablename{\hfill {\Large \bfseries \scshape \MyTableList} \hfill}
+\renewcommand{\cftlottitlefont}{\footnotesize}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\cftafterlottitle}{\vspace{-1cm}} 
+\renewcommand{\cftbeforelottitleskip}{-1cm}
+\addtocontents{lot}{~\hfill\footnotesize\textbf{Sayfa}\vspace{-0.4cm}} 
+\addtocontents{lot}{~\hfill\rule{\textwidth}{0.3pt}\par\vspace{-0.35cm}}  % Sayfa numarası üstüne çizgi ekleme
+\renewcommand{\cfttabfont}{\footnotesize} %	Tablo listesi yazı sitili değişimi
+\renewcommand\thetable{\thechapter\arabic{table}.} 
+\renewcommand{\cfttabpresnum}{\bfseries Tablo\:}
+\setlength{\cfttabnumwidth}{2cm}  
+\setlength{\cfttabindent}{0cm}  
+\setlength{\cftbeforetabskip}{3pt}
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%			Şekil ve Tablo yazıları format ve stil ayarları
+%		(Gerek duyulmadıkça ayarlarda değişiklik yapmayınız!)
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\captionsetup{format=hang, font=scriptsize, labelfont=bf, labelsep=space,aboveskip=4mm, belowskip=8mm} % caption tools
+\renewcommand{\tablename}{Tablo} % change table to Tablo
+\renewcommand{\figurename}{Şekil}  % change Figure to Şekil
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%Giriş sayfasına kadar olan Bölüm başlıkları format ve stil ayarları 
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\titleformat{\chapter}[hang]{\centering\large\bfseries}{\thechapter}{0.01cm}{\large\bfseries}
+\titlespacing{\chapter}{0pt}{-1cm}{20pt}
+\titlespacing*{\chapter}{10pt}{-1cm}{20pt}
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\pagenumbering{roman}
+\setcounter{page}{4}
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%		Lütfen "onsoz.text" dosyasına girerek Önsöz metinizini yazınız.
+\input{./onbolumler/onsoz.tex}
+%----------------------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{2.5em}{2.0em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{4.5em}{3.0em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{6.0em}{3.0em}}
+\makeatother
+\tableofcontents
+\addcontentsline{toc}{section}{\footnotesize \scshape \MyContents{}}
+
+\newpage
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+% 		Lütfen "ozetabs.text" dosyasına girerek bilimsel çalışmanızın özetini ve abstract 
+%									metinizini yazınız.
+\input{./onbolumler/ozet_abstract.tex}
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\listoffigures
+\addcontentsline{toc}{section}{\footnotesize \scshape \MyShapeLists{}}
+\newpage
+\listoftables
+\addcontentsline{toc}{section}{\footnotesize \scshape \MyTableList{}}
+\newpage
+\lstlistoflistings
+\addcontentsline{toc}{section}{\footnotesize \scshape \MyCodeList{}}
+\newpage
+
+% \newcommand{\codes}{Kodlar}
+% \newlistof{definition}{def}{\codes} 
+% \addcontentsline{toc}{section}{\footnotesize \scshape \codes}
+% \newpage
+
+
+%----------------------------------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%		Bölüm, alt bölüm, 2. derece alt bölüm başlıkları format ve stil ayarları
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\titleformat{\chapter}[hang]{\Large\bfseries\scshape}{\thechapter}{0.4cm}{\Large\bfseries\scshape}
+\titlespacing{\chapter}{0pt}{-1cm}{5mm}
+
+\titleformat{\section}[hang]{\normalsize\bfseries}{\thesection}{0.25cm}{\normalsize\bfseries}
+\titlespacing{\section}{0pt}{\parskip}{4mm}
+\titleformat{\subsection}[hang]{\small\bfseries}{\thesubsection}{0.25cm}{\small\bfseries}
+\titlespacing{\subsection}{0pt}{\parskip}{4mm}
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+
+\pagenumbering{arabic}
+
+%----------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+%	Bilimsel metninize ait ana bölümlerin "ana.tex" dosyasına eklendiği bölüm. Aşağıda yer alan giriş 
+%	dosyalarını kendi bilimsel metnize göre değiştiriniz. Aşağıdaki giriş dosyalarını kendi ihtiyacınıza
+%	göre arttırıp azaltabilirsiniz.
+%			
+%
+%	Giriş
+%---------------------------------------
+\input{./anabolumler/giris.tex}
+\input{./anabolumler/GoDili.tex}
+\input{./anabolumler/SoketProgramlama.tex}
+\input{./anabolumler/SoketUygulama.tex}
+% \input{kaynaklar}
+
+
+
+
+% \begin{sheet}
+%     \AddToShipoutPicture{\BackgroundStructure} % Set the background of each page to that specified above in the header information section
+%     \input{00-sheets/GoLang}
+% \end{sheet}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{footnotesize}
+\begin{singlespacing}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+\end{singlespacing}
+\end{footnotesize}
+
+
+%\input{./sonsayfalar/ekler.tex} % Ekler listeniz yoksa lütfen bu komudu pasif pozisyona getiriniz!
+\input{./sonsayfalar/ozgecmis.tex}
+
+\newpage
+
+\end{document}
+
